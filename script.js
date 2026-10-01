@@ -1,61 +1,33 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const nav = document.getElementById("nav");
-  const toggle = document.getElementById("navToggle");
-  const filters = document.getElementById("filters");
-  const cards = [...document.querySelectorAll(".project-card")];
-  const empty = document.getElementById("emptyState");
-  const toast = document.getElementById("toast");
+const menu = document.querySelector('.menu');
+const nav = document.querySelector('.nav nav');
 
-  toggle?.addEventListener("click", () => nav.classList.toggle("open"));
-  document.querySelectorAll(".nav a").forEach(a => a.addEventListener("click", () => nav?.classList.remove("open")));
-
-  filters?.addEventListener("click", e => {
-    const btn = e.target.closest(".filter");
-    if (!btn) return;
-    document.querySelectorAll(".filter").forEach(x => x.classList.remove("active"));
-    btn.classList.add("active");
-    const wanted = btn.dataset.filter;
-    let count = 0;
-    cards.forEach(card => {
-      const show = wanted === "all" || card.dataset.category === wanted;
-      card.classList.toggle("hidden", !show);
-      if (show) count++;
-    });
-    empty.classList.toggle("show", count === 0);
-  });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {threshold: .08});
-  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-  const visual = document.querySelector(".hero-visual");
-  window.addEventListener("pointermove", e => {
-    if (!visual || innerWidth < 800) return;
-    const x = (e.clientX / innerWidth - .5) * 8;
-    const y = (e.clientY / innerHeight - .5) * 8;
-    visual.style.transform = `translate(${x}px,${y}px)`;
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener("click", e => {
-      const target = document.querySelector(a.getAttribute("href"));
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({behavior:"smooth"});
-    });
-  });
-
-  document.querySelectorAll('a[target="_blank"]').forEach(a => {
-    a.addEventListener("click", () => {
-      toast.textContent = "در حال باز کردن لینک...";
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 1200);
-    });
-  });
+menu?.addEventListener('click', () => {
+  const open = nav.dataset.open === 'true';
+  nav.dataset.open = String(!open);
+  nav.style.display = open ? '' : 'flex';
+  nav.style.position = 'absolute';
+  nav.style.top = '78px';
+  nav.style.left = '0';
+  nav.style.right = '0';
+  nav.style.padding = '20px 24px';
+  nav.style.background = '#080a0e';
+  nav.style.flexDirection = 'column';
+  nav.style.borderBottom = '1px solid rgba(255,255,255,.1)';
 });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.project, .lab, .about-copy, .contact-links').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity .7s ease, transform .7s ease';
+  observer.observe(el);
+});
+
+const style = document.createElement('style');
+style.textContent = '.show{opacity:1!important;transform:translateY(0)!important}';
+document.head.appendChild(style);

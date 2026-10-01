@@ -1,16 +1,15 @@
-# SAYED YASIR Portfolio
+# SAYED YASIR — Personal Website
 
-## Structure
-- index.html
-- css/style.css
-- js/script.js
-- assets/images/
+A responsive personal portfolio / builder site for Sayed Yasir.
 
-## Run
-Open `index.html` directly in a browser after extracting the ZIP.
+## Files
+- `index.html` — page structure/content
+- `style.css` — visual design and responsive layout
+- `script.js` — mobile navigation and reveal animations
+- `assets/yasir.jpg` — profile portrait
 
-CSS and JavaScript use local relative paths:
-- `./css/style.css`
-- `./js/script.js`
+## Run locally
+Open `index.html` in a browser.
 
-The site does not require Google Fonts or another external dependency to load its main layout and interactions.
+## Deploy
+This is a static site and can be deployed directly to GitHub Pages.
