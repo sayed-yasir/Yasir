@@ -1,15 +1,15 @@
 # SAYED YASIR — Personal Website
 
-A responsive personal portfolio / builder site for Sayed Yasir.
+A multilingual (English / دری / پښتو) personal website. Plain HTML + CSS + JavaScript, no external dependencies.
 
 ## Files
-- `index.html` — page structure/content
-- `style.css` — visual design and responsive layout
-- `script.js` — mobile navigation and reveal animations
-- `assets/yasir.jpg` — profile portrait
+- `index.html` — page structure
+- `style.css` — design and responsive layout (RTL/LTR)
+- `script.js` — translations, language switcher, mobile menu
+- `assets/yasir.jpg` — profile photo
 
 ## Run locally
 Open `index.html` in a browser.
 
 ## Deploy
-This is a static site and can be deployed directly to GitHub Pages.
+Static site: upload all files (keep the `assets` folder) to the `Yasir` repo and enable GitHub Pages.
