@@ -7,6 +7,7 @@ A multilingual (English / دری / پښتو) personal website. Plain HTML + CSS 
 - `style.css` — design and responsive layout (RTL/LTR)
 - `script.js` — translations, language switcher, mobile menu
 - `assets/yasir.jpg` — profile photo
+- `assets/projects/*.jpg` — one cover image per project (800×450). To use a real screenshot, replace the file with the same name.
 
 ## Run locally
 Open `index.html` in a browser.
